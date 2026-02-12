@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: $color-bg;
+  border-bottom: 1px solid $color-neutral;
+  transition: box-shadow $transition-duration $transition-timing;
+
+  &.scrolled {
+    box-shadow: 0 2px 12px rgba($color-text, 0.06);
+  }
+}
+
+.inner {
+  @include container;
+  @include flex-between;
+  min-height: 3.5rem;
+  padding-block: $space-3 $space-3;
+
+  @include respond-to('md') {
+    min-height: 4rem;
+    padding-block: $space-4 $space-4;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  text-decoration: none;
+  transition: opacity $transition-duration $transition-timing;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-sm;
+  }
+}
+
+.logoImage {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+  flex-shrink: 0;
+
+  @include respond-to('md') {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.logoText {
+  font-family: $font-heading;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $color-contrast;
+  letter-spacing: 0.02em;
+
+  @include respond-to('md') {
+    font-size: 1.25rem;
+  }
+}
+
+.desktopNav {
+  display: none;
+
+  @include respond-to('lg') {
+    display: block;
+  }
+}
+
+.hamburgerWrapper {
+  @include respond-to('lg') {
+    display: none;
+  }
+}

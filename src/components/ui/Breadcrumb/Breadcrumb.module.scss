@@ -1,0 +1,61 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.nav {
+  @include container;
+  padding-block: $space-4 $space-2;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-duration $transition-timing;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-contrast;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-sm;
+  }
+}
+
+.separator {
+  display: inline-block;
+  margin-inline: $space-2;
+  color: $color-neutral;
+  user-select: none;
+  font-weight: 300;
+}
+
+.current {
+  color: $color-accent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 24ch;
+
+  @include respond-to('md') {
+    max-width: 40ch;
+  }
+}

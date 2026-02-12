@@ -1,0 +1,53 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include respond-to('lg') {
+    flex-direction: row;
+    gap: $space-6;
+  }
+}
+
+.item {
+  // role: none applied via HTML
+}
+
+.link,
+.linkActive {
+  display: inline-block;
+  padding: $space-2 $space-3;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $color-text;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: color $transition-duration $transition-timing,
+    background-color $transition-duration $transition-timing;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.linkActive {
+  color: $color-primary;
+  font-weight: 600;
+  background-color: rgba($color-primary, 0.08);
+}

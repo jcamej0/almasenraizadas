@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.card {
+  border-radius: $radius-md;
+  background-color: $color-neutral;
+  transition: box-shadow $transition-duration $transition-timing,
+    background-color $transition-duration $transition-timing;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba($color-text, 0.1);
+    background-color: $color-secondary;
+  }
+}
+
+.link {
+  display: block;
+  padding: $space-6;
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-md;
+  }
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 1.125rem;
+  color: $color-contrast;
+  margin: 0 0 $space-2;
+}
+
+.description {
+  font-size: 0.9375rem;
+  color: $color-text;
+  line-height: $line-height-base;
+  margin: 0 0 $space-3;
+}
+
+.count {
+  display: inline-block;
+  font-size: 0.8125rem;
+  color: $color-primary;
+  font-weight: 600;
+}

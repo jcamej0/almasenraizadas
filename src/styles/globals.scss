@@ -1,0 +1,120 @@
+// ==========================================================================
+// Almas Enraizadas — Global Styles Entry Point
+// ==========================================================================
+
+@use 'variables' as *;
+@use 'reset';
+@use 'typography';
+
+// --------------------------------------------------------------------------
+// CSS Custom Properties (runtime access)
+// --------------------------------------------------------------------------
+:root {
+  --color-bg: #{$color-bg};
+  --color-text: #{$color-text};
+  --color-contrast: #{$color-contrast};
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-neutral: #{$color-neutral};
+  --color-accent: #{$color-accent};
+
+  --font-system: #{$font-system};
+  --font-heading: #{$font-heading};
+  --font-mono: #{$font-mono};
+
+  --font-size-base: #{$font-size-base};
+  --line-height-base: #{$line-height-base};
+
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-5: #{$space-5};
+  --space-6: #{$space-6};
+  --space-8: #{$space-8};
+  --space-10: #{$space-10};
+  --space-12: #{$space-12};
+  --space-16: #{$space-16};
+  --space-20: #{$space-20};
+  --space-24: #{$space-24};
+
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-xl: #{$radius-xl};
+  --radius-full: #{$radius-full};
+
+  --bp-sm: #{$bp-sm};
+  --bp-md: #{$bp-md};
+  --bp-lg: #{$bp-lg};
+  --bp-xl: #{$bp-xl};
+
+  --max-width-sm: #{$max-width-sm};
+  --max-width-md: #{$max-width-md};
+  --max-width-lg: #{$max-width-lg};
+  --max-width-xl: #{$max-width-xl};
+  --max-width-2xl: #{$max-width-2xl};
+
+  --transition-duration: #{$transition-duration};
+  --transition-duration-slow: #{$transition-duration-slow};
+  --transition-timing: #{$transition-timing};
+}
+
+// --------------------------------------------------------------------------
+// Body Base Styles
+// --------------------------------------------------------------------------
+body {
+  background-color: $color-bg;
+}
+
+// --------------------------------------------------------------------------
+// Skip to Content (Accessibility)
+// --------------------------------------------------------------------------
+.skip-to-content {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  z-index: $z-skip-link;
+  padding: $space-2 $space-4;
+  background-color: $color-contrast;
+  color: $color-bg;
+  border-radius: $radius-md;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform $transition-duration $transition-timing;
+
+  &:focus {
+    transform: translateY(0);
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Selection Styles
+// --------------------------------------------------------------------------
+::selection {
+  background-color: $color-primary;
+  color: $color-bg;
+}
+
+// --------------------------------------------------------------------------
+// Scrollbar (Subtle)
+// --------------------------------------------------------------------------
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-neutral;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-accent;
+  border-radius: $radius-full;
+
+  &:hover {
+    background: $color-primary;
+  }
+}

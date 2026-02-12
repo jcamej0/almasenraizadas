@@ -1,0 +1,29 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: $space-1 $space-3;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: $color-bg;
+  background-color: $color-primary;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: background-color $transition-duration $transition-timing;
+
+  &:hover,
+  &:focus-visible {
+    background-color: color.adjust($color-primary, $lightness: -8%);
+  }
+}

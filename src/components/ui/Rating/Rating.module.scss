@@ -1,0 +1,8 @@
+@use '../../../styles/variables' as *;
+
+.rating {
+  font-size: 1rem;
+  color: $color-primary;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}

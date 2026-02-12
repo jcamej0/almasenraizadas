@@ -1,0 +1,140 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.hero {
+  @include container;
+  padding-block: $space-12 $space-10;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    $color-bg 0%,
+    $color-secondary 30%,
+    $color-neutral 70%,
+    $color-bg 100%
+  );
+  border-radius: 0 0 $radius-lg $radius-lg;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: $color-contrast;
+  margin: 0 0 $space-4;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: $color-primary;
+  font-style: italic;
+  margin: 0;
+}
+
+.content {
+  @include container;
+  padding-block: $space-12 $space-16;
+}
+
+.mission {
+  margin-bottom: $space-16;
+}
+
+.sectionTitle {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  color: $color-contrast;
+  margin: 0 0 $space-6;
+}
+
+.body {
+  font-size: 1.0625rem;
+  line-height: $line-height-base;
+  color: $color-text;
+  margin: 0 0 $space-6;
+  max-width: 65ch;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.values {
+  margin-bottom: $space-16;
+}
+
+.valuesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-8;
+  grid-template-columns: 1fr;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.valueItem {
+  padding: $space-6;
+  background-color: $color-neutral;
+  border-radius: $radius-md;
+  transition: box-shadow $transition-duration $transition-timing;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(42, 40, 39, 0.08);
+  }
+}
+
+.valueTitle {
+  font-family: $font-heading;
+  font-size: 1.25rem;
+  color: $color-primary;
+  margin: 0 0 $space-3;
+}
+
+.valueDesc {
+  font-size: 0.9375rem;
+  line-height: $line-height-base;
+  color: $color-text;
+  margin: 0;
+}
+
+.cta {
+  text-align: center;
+  padding: $space-12;
+  background-color: $color-secondary;
+  border-radius: $radius-lg;
+}
+
+.ctaText {
+  font-size: 1.125rem;
+  color: $color-text;
+  margin: 0 0 $space-6;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3 $space-6;
+  background-color: $color-primary;
+  color: $color-bg;
+  font-weight: 600;
+  border-radius: $radius-md;
+  text-decoration: none;
+  transition: background-color $transition-duration $transition-timing,
+    transform $transition-duration $transition-timing;
+
+  &:hover {
+    background-color: $color-contrast;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

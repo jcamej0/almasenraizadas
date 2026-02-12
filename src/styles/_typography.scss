@@ -1,0 +1,170 @@
+// ==========================================================================
+// Almas Enraizadas — Typography System
+// ==========================================================================
+
+@use 'variables' as *;
+
+// --------------------------------------------------------------------------
+// Base Body
+// --------------------------------------------------------------------------
+body {
+  font-family: $font-system;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text;
+}
+
+// --------------------------------------------------------------------------
+// Headings (responsive with clamp)
+// --------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  line-height: $line-height-heading;
+  font-weight: 600;
+  color: $color-contrast;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw + 1rem, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw + 0.75rem, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw + 0.5rem, 1.75rem);
+}
+
+h4 {
+  font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+}
+
+h6 {
+  font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem);
+}
+
+// --------------------------------------------------------------------------
+// Links
+// --------------------------------------------------------------------------
+a {
+  color: $color-primary;
+  transition: color $transition-duration $transition-timing;
+
+  &:hover {
+    color: $color-accent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Text Elements
+// --------------------------------------------------------------------------
+small {
+  font-size: 0.875em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+blockquote {
+  padding-inline-start: $space-4;
+  border-inline-start: 4px solid $color-primary;
+  color: $color-text;
+  font-style: italic;
+}
+
+// --------------------------------------------------------------------------
+// Prose — Rich text content from Sanity
+// --------------------------------------------------------------------------
+.prose {
+  max-width: 65ch;
+
+  p + p {
+    margin-top: $space-4;
+  }
+
+  ul,
+  ol {
+    margin-top: $space-4;
+    padding-inline-start: $space-6;
+
+    li + li {
+      margin-top: $space-2;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: $space-8;
+    margin-bottom: $space-4;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child {
+    margin-top: 0;
+  }
+
+  blockquote {
+    margin-top: $space-6;
+    margin-bottom: $space-6;
+  }
+
+  img {
+    border-radius: $radius-md;
+    margin-top: $space-6;
+    margin-bottom: $space-6;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  code {
+    font-family: $font-mono;
+    font-size: 0.9em;
+    padding: $space-1 $space-2;
+    background-color: $color-neutral;
+    border-radius: $radius-sm;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: $space-4;
+    background-color: $color-contrast;
+    color: $color-bg;
+    border-radius: $radius-md;
+    margin-top: $space-6;
+    margin-bottom: $space-6;
+
+    code {
+      padding: 0;
+      background: none;
+    }
+  }
+}

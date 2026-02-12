@@ -1,0 +1,159 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// --------------------------------------------------------------------------
+// Hero Section
+// --------------------------------------------------------------------------
+.hero {
+  width: 100%;
+  min-height: 60vh;
+  padding: $space-16 $space-4;
+  background: linear-gradient(
+    135deg,
+    $color-bg 0%,
+    $color-secondary 25%,
+    $color-neutral 50%,
+    $color-secondary 75%,
+    $color-bg 100%
+  );
+  @include flex-center;
+}
+
+.heroInner {
+  max-width: $max-width-md;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: $font-heading;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: $line-height-heading;
+  color: $color-contrast;
+  margin: 0 0 $space-4;
+}
+
+.heroTagline {
+  font-size: clamp($font-size-base, 2vw, 1.25rem);
+  line-height: $line-height-base;
+  color: $color-text;
+  margin: 0 0 $space-8;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3 $space-6;
+  background-color: $color-primary;
+  color: $color-bg;
+  font-weight: 600;
+  border-radius: $radius-md;
+  text-decoration: none;
+  transition: background-color $transition-duration $transition-timing,
+    transform $transition-duration $transition-timing;
+
+  &:hover {
+    background-color: $color-contrast;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Shared Layout
+// --------------------------------------------------------------------------
+.container {
+  @include container;
+}
+
+.sectionTitle {
+  font-family: $font-heading;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: $line-height-heading;
+  color: $color-contrast;
+  margin: 0 0 $space-8;
+}
+
+.viewAllWrap {
+  margin-top: $space-8;
+  text-align: center;
+}
+
+.viewAll {
+  display: inline-block;
+  color: $color-primary;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color $transition-duration $transition-timing;
+
+  &:hover {
+    color: $color-contrast;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Posts Section
+// --------------------------------------------------------------------------
+.postsSection {
+  padding: $space-16 0;
+}
+
+// PostGrid has its own grid styles; we just wrap it
+
+// --------------------------------------------------------------------------
+// Sections Grid
+// --------------------------------------------------------------------------
+.sectionsSection {
+  padding: $space-16 0;
+  background-color: $color-secondary;
+}
+
+.sectionsGrid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Profiles Section
+// --------------------------------------------------------------------------
+.profilesSection {
+  padding: $space-16 0;
+}
+
+.profilesList {
+  display: flex;
+  gap: $space-6;
+  overflow-x: auto;
+  padding-bottom: $space-4;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  @include respond-to('md') {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

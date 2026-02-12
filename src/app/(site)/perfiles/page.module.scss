@@ -1,0 +1,45 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.hero {
+  @include container;
+  padding-block: $space-12 $space-8;
+  text-align: center;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: $color-contrast;
+  margin-bottom: $space-4;
+}
+
+.subtitle {
+  color: $color-accent;
+  font-size: 1.125rem;
+}
+
+.content {
+  @include container;
+  padding-block: $space-8 $space-16;
+}
+
+.grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty {
+  text-align: center;
+  color: $color-accent;
+  padding: $space-12;
+}

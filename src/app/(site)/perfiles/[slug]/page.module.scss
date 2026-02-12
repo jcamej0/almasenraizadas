@@ -1,0 +1,86 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.header {
+  @include container;
+  padding-block: $space-12 $space-10;
+  text-align: center;
+}
+
+.avatarWrap {
+  width: 10rem;
+  height: 10rem;
+  margin: 0 auto $space-6;
+  border-radius: $radius-full;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  font-family: $font-heading;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: $color-contrast;
+  margin: 0 0 $space-2;
+}
+
+.role {
+  font-size: 1rem;
+  color: $color-primary;
+  margin: 0 0 $space-6;
+}
+
+.bio {
+  max-width: 42rem;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+  line-height: $line-height-base;
+  color: $color-text;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-3;
+  margin-top: $space-6;
+  padding-top: $space-6;
+  border-top: 1px solid $color-neutral;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.125rem;
+  color: $color-primary;
+  text-decoration: none;
+  border-radius: $radius-full;
+  transition: color $transition-duration $transition-timing,
+    background-color $transition-duration $transition-timing;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-contrast;
+    background-color: $color-neutral;
+  }
+}
+
+.postsSection {
+  @include container;
+  padding-block: $space-10 $space-16;
+}
+
+.postsHeading {
+  font-family: $font-heading;
+  font-size: 1.5rem;
+  color: $color-contrast;
+  margin-bottom: $space-6;
+}
