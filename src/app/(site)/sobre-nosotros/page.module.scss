@@ -103,6 +103,40 @@
   margin: 0;
 }
 
+// ---------------------------------------------------------------------------
+// Team / Authors section
+// ---------------------------------------------------------------------------
+
+.team {
+  margin-bottom: $space-16;
+}
+
+.teamIntro {
+  font-size: 1.0625rem;
+  line-height: $line-height-base;
+  color: $color-text;
+  max-width: 55ch;
+  margin: 0 0 $space-8;
+}
+
+.teamGrid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// CTA block
+// ---------------------------------------------------------------------------
+
 .cta {
   text-align: center;
   padding: $space-12;

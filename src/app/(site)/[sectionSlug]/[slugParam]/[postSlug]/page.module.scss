@@ -45,37 +45,6 @@
   margin: 0 0 $space-4;
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: $space-2 $space-4;
-  color: $color-accent;
-  font-size: 0.9375rem;
-  margin-bottom: $space-4;
-}
-
-.authorLink {
-  color: $color-primary;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color $transition-duration $transition-timing;
-
-  &:hover {
-    color: $color-contrast;
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    @include focus-ring;
-  }
-}
-
-.separator {
-  opacity: 0.6;
-  user-select: none;
-}
 
 .tags {
   margin-bottom: $space-4;
@@ -89,28 +58,6 @@
   gap: $space-4;
   color: $color-accent;
   font-size: 0.875rem;
-}
-
-.aiSummary {
-  background-color: $color-secondary;
-  border-radius: $radius-md;
-  padding: $space-6;
-  margin-bottom: $space-12;
-  border-left: 4px solid $color-primary;
-}
-
-.aiSummaryTitle {
-  font-family: $font-heading;
-  font-size: 1.125rem;
-  color: $color-contrast;
-  margin: 0 0 $space-3;
-}
-
-.aiSummaryText {
-  color: $color-text;
-  font-size: 1rem;
-  line-height: $line-height-base;
-  margin: 0;
 }
 
 .prose {

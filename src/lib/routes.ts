@@ -120,6 +120,5 @@ export const tagUrl = (slug: string): string =>
 export const NAV_ITEMS: { label: string; href: string }[] = [
   { label: 'Inicio', href: ROUTES.HOME },
   { label: 'Secciones', href: ROUTES.SECTIONS },
-  { label: 'Perfiles', href: ROUTES.PROFILES },
   { label: 'Sobre Nosotros', href: ROUTES.ABOUT },
 ];

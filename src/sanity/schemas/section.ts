@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { AiImageGenerator } from '../components/AiImageGenerator'
 
 export default defineType({
   name: 'section',
@@ -32,6 +33,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      components: { input: AiImageGenerator },
     }),
     defineField({
       name: 'order',
@@ -50,11 +52,13 @@ export default defineType({
     select: {
       title: 'title',
       order: 'order',
+      media: 'image',
     },
-    prepare({ title, order }) {
+    prepare({ title, order, media }) {
       return {
         title,
         subtitle: order != null ? `Order: ${order}` : undefined,
+        media,
       }
     },
   },

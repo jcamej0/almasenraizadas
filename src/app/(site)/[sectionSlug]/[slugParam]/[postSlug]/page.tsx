@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import {
   fetchPostBySlug,
   fetchRelatedPosts,
   fetchAllPostSlugs,
 } from '@/controllers';
-import { PostGrid, TagList, Rating, ShareButtons, Breadcrumb } from '@/components/ui';
+import { ArticleSummary, PostGrid, PostMeta, TagList, Rating, ShareButtons, Breadcrumb } from '@/components/ui';
 import { PortableTextBody } from '@/components/ui/PortableTextBody';
 import RichSchema from '@/components/seo/RichSchema';
 import {
@@ -19,10 +18,8 @@ import {
   postUrl,
   sectionUrl,
   subcategoryUrl,
-  profilePath,
   absoluteUrl,
 } from '@/lib/routes';
-import { formatDate, formatReadingTime } from '@/lib/formatters';
 import { getImageUrl } from '@/services/sanity/image';
 import styles from './page.module.scss';
 
@@ -132,39 +129,24 @@ export default async function SubcategoryPostPage({ params }: PageProps) {
           </div>
           <div className={styles.headerContent}>
             <h1 className={styles.title}>{post.title}</h1>
-            <div className={styles.meta}>
-              <Link
-                href={profilePath(post.author.slug.current)}
-                className={styles.authorLink}
-              >
-                {post.author.name}
-              </Link>
-              <time dateTime={post.publishedAt} className={styles.date}>
-                {formatDate(post.publishedAt)}
-              </time>
-            </div>
+            <PostMeta
+              author={post.author}
+              publishedAt={post.publishedAt}
+              readingTime={post.readingTime}
+            />
             {post.tags && post.tags.length > 0 && (
               <TagList tags={post.tags} className={styles.tags} />
             )}
-            <div className={styles.metaFooter}>
-              {post.rating != null && <Rating value={post.rating} />}
-              {post.rating != null && post.readingTime != null && (
-                <span className={styles.separator} aria-hidden>·</span>
-              )}
-              {post.readingTime != null && (
-                <span className={styles.readingTime}>
-                  {formatReadingTime(post.readingTime)}
-                </span>
-              )}
-            </div>
+            {post.rating != null && (
+              <div className={styles.metaFooter}>
+                <Rating value={post.rating} />
+              </div>
+            )}
           </div>
         </header>
 
         {post.aiSummary && (
-          <aside className={styles.aiSummary} aria-label="Resumen con IA">
-            <h2 className={styles.aiSummaryTitle}>Resumen</h2>
-            <p className={styles.aiSummaryText}>{post.aiSummary}</p>
-          </aside>
+          <ArticleSummary text={post.aiSummary} />
         )}
 
         <div className={styles.prose}>

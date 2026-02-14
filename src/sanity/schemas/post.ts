@@ -1,4 +1,10 @@
 import { defineType, defineField, defineArrayMember } from 'sanity'
+import { AiSummaryInput } from '../components/AiSummaryInput'
+import { AiExcerptInput } from '../components/AiExcerptInput'
+import { AiSeoTitleInput } from '../components/AiSeoTitleInput'
+import { AiReadingTimeInput } from '../components/AiReadingTimeInput'
+import { AiImageGenerator } from '../components/AiImageGenerator'
+import { AiBodyInput } from '../components/AiBodyInput'
 
 const EXCERPT_MAX_LENGTH = 200
 const RATING_MIN = 0
@@ -20,6 +26,9 @@ export default defineType({
       type: 'string',
       group: 'content',
       validation: (rule) => rule.required(),
+      components: {
+        input: AiSeoTitleInput,
+      },
     }),
     defineField({
       name: 'slug',
@@ -55,6 +64,9 @@ export default defineType({
           description: 'Alternative text for the image for accessibility.',
         }),
       ],
+      components: {
+        input: AiImageGenerator,
+      },
     }),
     defineField({
       name: 'publishedAt',
@@ -69,6 +81,9 @@ export default defineType({
       group: 'content',
       rows: 3,
       validation: (rule) => rule.max(EXCERPT_MAX_LENGTH),
+      components: {
+        input: AiExcerptInput,
+      },
     }),
     defineField({
       name: 'body',
@@ -92,6 +107,9 @@ export default defineType({
           ],
         }),
       ],
+      components: {
+        input: AiBodyInput,
+      },
     }),
     defineField({
       name: 'section',
@@ -125,7 +143,11 @@ export default defineType({
       title: 'AI Summary',
       type: 'text',
       group: 'seo',
-      description: 'Resumen generado para IA',
+      rows: 4,
+      description: 'Resumen generado con IA para buscadores y lectores rápidos.',
+      components: {
+        input: AiSummaryInput,
+      },
     }),
     defineField({
       name: 'rating',
@@ -139,6 +161,9 @@ export default defineType({
       title: 'Reading Time (minutes)',
       type: 'number',
       group: 'metadata',
+      components: {
+        input: AiReadingTimeInput,
+      },
     }),
   ],
   preview: {

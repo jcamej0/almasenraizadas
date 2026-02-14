@@ -1,60 +1,157 @@
+@use 'sass:color';
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-// --------------------------------------------------------------------------
-// Hero Section
-// --------------------------------------------------------------------------
-.hero {
-  width: 100%;
-  min-height: 60vh;
-  padding: $space-16 $space-4;
-  background: linear-gradient(
-    135deg,
-    $color-bg 0%,
-    $color-secondary 25%,
-    $color-neutral 50%,
-    $color-secondary 75%,
-    $color-bg 100%
-  );
-  @include flex-center;
+// ==========================================================================
+// Keyframes for hero content entrance
+// ==========================================================================
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.heroInner {
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%      { transform: translateY(6px); opacity: 0.8; }
+}
+
+// ==========================================================================
+// Hero Section
+// ==========================================================================
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  min-height: 90dvh;
+  padding: $space-16 $space-4 $space-8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    $color-bg 0%,
+    color.adjust($color-secondary, $lightness: 8%) 30%,
+    color.adjust($color-neutral, $lightness: 4%) 60%,
+    color.adjust($color-secondary, $lightness: 6%) 80%,
+    $color-bg 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
   max-width: $max-width-md;
   margin-inline: auto;
   text-align: center;
 }
 
+.heroEyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-primary;
+  margin-bottom: $space-4;
+  opacity: 0;
+  animation: hero-fade-up 0.8s ease-out 0.3s forwards;
+
+  @include respond-to('md') {
+    font-size: 0.85rem;
+  }
+}
+
 .heroTitle {
   font-family: $font-heading;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: $line-height-heading;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  line-height: 1.1;
   color: $color-contrast;
   margin: 0 0 $space-4;
+  opacity: 0;
+  animation: hero-fade-up 0.8s ease-out 0.5s forwards;
 }
 
 .heroTagline {
-  font-size: clamp($font-size-base, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
   line-height: $line-height-base;
   color: $color-text;
   margin: 0 0 $space-8;
+  max-width: 540px;
+  margin-inline: auto;
+  opacity: 0;
+  animation: hero-fade-up 0.8s ease-out 0.7s forwards;
 }
 
-.cta {
+.heroCtas {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  align-items: center;
+  opacity: 0;
+  animation: hero-fade-up 0.8s ease-out 0.9s forwards;
+
+  @include respond-to('sm') {
+    flex-direction: row;
+    justify-content: center;
+    gap: $space-4;
+  }
+}
+
+.ctaPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: $space-3 $space-6;
+  padding: $space-3 $space-8;
   background-color: $color-primary;
   color: $color-bg;
   font-weight: 600;
-  border-radius: $radius-md;
+  font-size: 0.95rem;
+  border-radius: $radius-full;
   text-decoration: none;
-  transition: background-color $transition-duration $transition-timing,
-    transform $transition-duration $transition-timing;
+  transition:
+    background-color $transition-duration-slow $transition-timing,
+    transform $transition-duration $transition-timing,
+    box-shadow $transition-duration-slow $transition-timing;
 
   &:hover {
     background-color: $color-contrast;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3 $space-8;
+  background-color: transparent;
+  color: $color-primary;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid $color-primary;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition:
+    background-color $transition-duration-slow $transition-timing,
+    color $transition-duration-slow $transition-timing,
+    transform $transition-duration $transition-timing;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-bg;
     transform: translateY(-2px);
   }
 
@@ -63,9 +160,40 @@
   }
 }
 
-// --------------------------------------------------------------------------
+// Scroll-down hint arrow
+.heroScrollHint {
+  position: absolute;
+  bottom: $space-6;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $color-accent;
+  animation: scroll-bounce 2s ease-in-out infinite;
+  z-index: 1;
+
+  svg {
+    display: block;
+  }
+}
+
+// Reduce motion
+@media (prefers-reduced-motion: reduce) {
+  .heroEyebrow,
+  .heroTitle,
+  .heroTagline,
+  .heroCtas {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .heroScrollHint {
+    animation: none !important;
+    opacity: 0.5;
+  }
+}
+
+// ==========================================================================
 // Shared Layout
-// --------------------------------------------------------------------------
+// ==========================================================================
 .container {
   @include container;
 }
@@ -100,18 +228,16 @@
   }
 }
 
-// --------------------------------------------------------------------------
+// ==========================================================================
 // Posts Section
-// --------------------------------------------------------------------------
+// ==========================================================================
 .postsSection {
   padding: $space-16 0;
 }
 
-// PostGrid has its own grid styles; we just wrap it
-
-// --------------------------------------------------------------------------
+// ==========================================================================
 // Sections Grid
-// --------------------------------------------------------------------------
+// ==========================================================================
 .sectionsSection {
   padding: $space-16 0;
   background-color: $color-secondary;
@@ -131,9 +257,9 @@
   }
 }
 
-// --------------------------------------------------------------------------
+// ==========================================================================
 // Profiles Section
-// --------------------------------------------------------------------------
+// ==========================================================================
 .profilesSection {
   padding: $space-16 0;
 }

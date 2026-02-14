@@ -38,9 +38,12 @@ export function PostCard({ post }: PostCardProps) {
         </h3>
         <p className={styles.excerpt}>{truncateText(post.excerpt, 140)}</p>
         <div className={styles.meta}>
-          <span>
-            {post.author?.name ?? 'Anónimo'} · {formatDate(post.publishedAt)}
+          <span className={styles.authorMeta}>
+            <span className={styles.byLabel}>Por</span>{' '}
+            {post.author?.name ?? 'Anónimo'}
           </span>
+          <span className={styles.metaSep} aria-hidden="true">·</span>
+          <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
         </div>
         {post.tags && post.tags.length > 0 && (
           <TagList tags={post.tags} className={styles.tags} />

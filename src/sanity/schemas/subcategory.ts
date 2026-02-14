@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { AiImageGenerator } from '../components/AiImageGenerator'
 
 export default defineType({
   name: 'subcategory',
@@ -41,6 +42,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      components: { input: AiImageGenerator },
     }),
     defineField({
       name: 'order',
@@ -54,13 +56,15 @@ export default defineType({
       title: 'title',
       sectionTitle: 'section.title',
       order: 'order',
+      media: 'image',
     },
-    prepare({ title, sectionTitle, order }) {
+    prepare({ title, sectionTitle, order, media }) {
       return {
         title,
         subtitle: [sectionTitle, order != null ? `Order: ${order}` : null]
           .filter(Boolean)
           .join(' · '),
+        media,
       }
     },
   },

@@ -1,4 +1,5 @@
 import { defineType, defineField, defineArrayMember } from 'sanity'
+import { AiImageGenerator } from '../components/AiImageGenerator'
 
 const SOCIAL_PLATFORMS = ['instagram', 'twitter', 'linkedin', 'facebook', 'youtube', 'tiktok'] as const
 
@@ -29,6 +30,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      components: { input: AiImageGenerator },
     }),
     defineField({
       name: 'bio',

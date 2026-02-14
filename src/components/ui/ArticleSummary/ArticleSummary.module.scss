@@ -1,0 +1,75 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// ArticleSummary — visually distinct aside inside <article>
+// ---------------------------------------------------------------------------
+
+.summary {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+  background-color: color.adjust($color-secondary, $lightness: 6%);
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-md;
+  padding: $space-5 $space-6;
+  margin-bottom: $space-10;
+  position: relative;
+  overflow: hidden;
+
+  // Subtle decorative gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color.adjust($color-primary, $alpha: -0.92) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  @include respond-to('md') {
+    padding: $space-6 $space-8;
+    gap: $space-5;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius-full;
+  background-color: color.adjust($color-primary, $alpha: -0.85);
+  color: $color-primary;
+  margin-top: $space-1;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 1.0625rem;
+  line-height: $line-height-heading;
+  color: $color-contrast;
+  margin: 0 0 $space-2;
+
+  @include respond-to('md') {
+    font-size: 1.125rem;
+  }
+}
+
+.text {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text;
+  margin: 0;
+}

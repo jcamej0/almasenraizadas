@@ -11,9 +11,11 @@
   "dependencies": {
     "@portabletext/react": "^6.0.2",
     "@sanity/image-url": "^2.0.3",
+    "@sanity/ui": "^3.1.11",
     "@sanity/vision": "^5.9.0",
     "@supabase/supabase-js": "^2.95.3",
     "latest": "^0.2.0",
+    "lottie-react": "^2.4.1",
     "next": "16.1.6",
     "next-sanity": "^12.1.0",
     "react": "19.2.3",

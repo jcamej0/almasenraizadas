@@ -1,15 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Breadcrumb } from '@/components/ui';
+import { Breadcrumb, ProfileCard } from '@/components/ui';
 import RichSchema from '@/components/seo/RichSchema';
 import { buildBreadcrumbSchema } from '@/components/seo/schema-builders';
+import { fetchAllProfiles } from '@/controllers';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 import { ROUTES, absoluteUrl } from '@/lib/routes';
 import styles from './page.module.scss';
 
+/** ISR revalidation in seconds */
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Sobre Nosotros',
-  description: `Conoce la misión y valores de ${SITE_NAME}. Un espacio dedicado al bienestar, la conexión y el crecimiento personal.`,
+  description: `Conoce la misión, valores y equipo de ${SITE_NAME}. Un espacio dedicado al bienestar, la conexión y el crecimiento personal.`,
 };
 
 const VALUES = [
@@ -35,7 +39,9 @@ const VALUES = [
   },
 ] as const;
 
-export default function SobreNosotrosPage() {
+export default async function SobreNosotrosPage() {
+  const profiles = await fetchAllProfiles();
+
   const breadcrumbs = buildBreadcrumbSchema([
     { name: 'Inicio', url: absoluteUrl(ROUTES.HOME) },
     { name: 'Sobre Nosotros', url: absoluteUrl(ROUTES.ABOUT) },
@@ -88,6 +94,23 @@ export default function SobreNosotrosPage() {
             ))}
           </ul>
         </section>
+
+        {profiles.length > 0 && (
+          <section className={styles.team} aria-labelledby="team-title">
+            <h2 id="team-title" className={styles.sectionTitle}>
+              Nuestro Equipo
+            </h2>
+            <p className={styles.teamIntro}>
+              Conoce a las personas que comparten su conocimiento y experiencia
+              para acompañarte en tu camino de bienestar.
+            </p>
+            <div className={styles.teamGrid} role="list">
+              {profiles.map((author) => (
+                <ProfileCard key={author._id} author={author} />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className={styles.cta} aria-label="Explorar secciones">
           <p className={styles.ctaText}>

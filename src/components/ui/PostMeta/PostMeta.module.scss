@@ -1,0 +1,129 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// PostMeta — author byline + publish details card
+// ---------------------------------------------------------------------------
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-4 $space-5;
+  background-color: color.adjust($color-neutral, $lightness: 4%);
+  border-radius: $radius-lg;
+  margin-bottom: $space-6;
+  max-width: max-content;
+  margin-inline: auto;
+
+  @include respond-to('md') {
+    padding: $space-4 $space-6;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Avatar
+// ---------------------------------------------------------------------------
+
+.avatarLink {
+  flex-shrink: 0;
+  display: block;
+  border-radius: $radius-full;
+  overflow: hidden;
+  transition: box-shadow $transition-duration $transition-timing;
+
+  &:hover {
+    box-shadow: 0 0 0 3px color.adjust($color-primary, $alpha: -0.6);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-full;
+  }
+}
+
+.avatar {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  object-fit: cover;
+}
+
+// ---------------------------------------------------------------------------
+// Text info
+// ---------------------------------------------------------------------------
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  min-width: 0;
+}
+
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 $space-2;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-accent;
+  font-weight: 500;
+}
+
+.authorName {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-duration $transition-timing;
+
+  &:hover {
+    color: $color-contrast;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.role {
+  font-size: 0.8125rem;
+  color: $color-accent;
+  font-style: italic;
+
+  &::before {
+    content: '·';
+    margin-right: $space-1;
+    opacity: 0.5;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Date / reading time
+// ---------------------------------------------------------------------------
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 $space-2;
+  font-size: 0.8125rem;
+  color: $color-accent;
+}
+
+.dot {
+  opacity: 0.5;
+  user-select: none;
+}
+
+.readingTime {
+  white-space: nowrap;
+}

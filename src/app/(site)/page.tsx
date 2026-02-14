@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { fetchRecentPosts, fetchAllSections, fetchAllProfiles } from '@/controllers';
-import { PostGrid, SectionCard, ProfileCard } from '@/components/ui';
+import { PostGrid, SectionCard, ProfileCard, HeroBackground } from '@/components/ui';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 import { ROUTES } from '@/lib/routes';
 import styles from './page.module.scss';
@@ -14,16 +14,27 @@ export default async function HomePage() {
 
   return (
     <>
-      <section
-        className={styles.hero}
-        aria-label="Bienvenida"
-      >
-        <div className={styles.heroInner}>
+      <section className={styles.hero} aria-label="Bienvenida">
+        <HeroBackground />
+
+        <div className={styles.heroContent}>
+          <span className={styles.heroEyebrow}>Bienestar &middot; Yoga &middot; Aromaterapia</span>
           <h1 className={styles.heroTitle}>{SITE_NAME}</h1>
           <p className={styles.heroTagline}>{SITE_DESCRIPTION}</p>
-          <Link href={ROUTES.SECTIONS} className={styles.cta}>
-            Explorar Secciones
-          </Link>
+          <div className={styles.heroCtas}>
+            <Link href={ROUTES.SECTIONS} className={styles.ctaPrimary}>
+              Explorar Secciones
+            </Link>
+            <Link href={ROUTES.ABOUT} className={styles.ctaSecondary}>
+              Sobre Nosotros
+            </Link>
+          </div>
+        </div>
+
+        <div className={styles.heroScrollHint} aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </section>
 
@@ -84,8 +95,8 @@ export default async function HomePage() {
               ))}
             </div>
             <div className={styles.viewAllWrap}>
-              <Link href={ROUTES.PROFILES} className={styles.viewAll}>
-                Ver todos los perfiles
+              <Link href={ROUTES.ABOUT} className={styles.viewAll}>
+                Conoce al equipo
               </Link>
             </div>
           </div>
